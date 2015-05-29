@@ -48,10 +48,12 @@ class PortfolioSpec extends FlatSpec with Matchers {
 
   object Tradeable {
 
-    sealed abstract class TradeableType
+    abstract class TradeableType
 
     case class StockTradeableType() extends TradeableType
+
     case class FundTradeableType() extends TradeableType
+
     case class UnsupportedTradeableType() extends TradeableType
 
     class StringToTradeableTypeConverter(val original: String) {
@@ -80,7 +82,6 @@ class PortfolioSpec extends FlatSpec with Matchers {
         }
       })
 
-
     }
 
   }
@@ -101,8 +102,10 @@ class PortfolioSpec extends FlatSpec with Matchers {
     )
     val portfolio = new Portfolio(portfolioItems);
     portfolio containsTradeable "bmw" should be(true)
+  }
 
-
+  it should "be pretty awesome man" in {
+    Success(Unit).map((unit) => "test")
   }
 
   case class Tick(lastPrice: Double, Volume: Double, Open: Double, High: Double, Low: Double)
